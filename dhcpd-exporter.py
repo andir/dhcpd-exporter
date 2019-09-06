@@ -60,7 +60,7 @@ class DHCPCollector:
             l = leases.filter(lambda lease: ipaddress.IPv4Address(lease.ip) in subnet)
 
             total = l.count()
-            in_use = l.active.count()
+            in_use = l.active.valid.count()
             expired = l.filter(lambda l: l.binding_state == "free").count()
 
             in_use_metric.add_metric([n], in_use)
